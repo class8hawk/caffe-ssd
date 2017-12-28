@@ -25,6 +25,6 @@ item {
 }
 item {
   name: "yz"
-  label: 4
+  label: 5
   display_name: "yz"
 }
