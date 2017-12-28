@@ -1,0 +1,30 @@
+item {
+  name: "none_of_the_above"
+  label: 0
+  display_name: "background"
+}
+item {
+  name: "V"
+  label: 1
+  display_name: "V"
+}
+item {
+  name: "W300-1"
+  label: 2
+  display_name: "W300-1"
+}
+item {
+  name: "WJ_8"
+  label: 3
+  display_name: "WJ_8"
+}
+item {
+  name: "WJ_7"
+  label: 4
+  display_name: "WJ_7"
+}
+item {
+  name: "yz"
+  label: 4
+  display_name: "yz"
+}
