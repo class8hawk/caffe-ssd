@@ -9,10 +9,10 @@
 1. 首先从 最简单的 fc全连接网络开始, 实现对 mnist 手写字符识别任务（10分类）
 脚本执行路径： caffe环境 根路径
 10000迭代结果
-Iteration 10000, loss = 0.0945602
+Iteration 10000, loss = 0.0301605
 Iteration 10000, Testing net (#0)
-    Test net output #0: acc = 0.9572
-    Test net output #1: loss = 0.147647 (* 1 = 0.147647 loss)
+    Test net output #0: acc = 0.9772
+    Test net output #1: loss = 0.0744814 (* 1 = 0.0744814 loss)
 """
 # 1. 将pycaffe加入到系统路径中
 from __future__ import print_function
