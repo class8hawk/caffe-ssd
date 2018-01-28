@@ -6,7 +6,7 @@
       现在假定你已经在linux 终端通过脚本 跑过了mnist实验, 知道 原始mnist数据集下载脚本 + lmdb数据格式转换脚本 做了什么
       在此基础上, 通过编写 Python 脚本, 一步一步了解如何 定义&生成 自己的caffe网络 以及 深入训练的每个过程！
       
-首先从 最简单的 fc全连接网络开始, 实现对 mnist 手写字符识别任务（10分类）
+1. 首先从 最简单的 fc全连接网络开始, 实现对 mnist 手写字符识别任务（10分类）
 脚本执行路径： caffe环境 根路径
 10000迭代结果
 Iteration 10000, loss = 0.0945602
@@ -37,11 +37,13 @@ def fcnet(lmdb, batch_size, include_acc=False):
                              transform_param=dict(scale=1. / 256), ntop=2, name='mnist')
 
     # ip： 内积,即 全连接层fc
-    n.ip1 = L.InnerProduct(n.data, num_output=512, weight_filler=dict(type='xavier'))
+    n.ip1 = L.InnerProduct(n.data, num_output=512, param=[dict(lr_mult=1), dict(lr_mult=2)],
+                           weight_filler=dict(type='xavier'), bias_filler=dict(type='constant'))
     # ReLU 激活函数
     n.relu1 = L.ReLU(n.ip1, in_place=True)
     # fc 全连接层
-    n.ip2 = L.InnerProduct(n.relu1, num_output=10, weight_filler=dict(type='xavier'))
+    n.ip2 = L.InnerProduct(n.relu1, num_output=10, param=[dict(lr_mult=1), dict(lr_mult=2)],
+                           weight_filler=dict(type='xavier'), bias_filler=dict(type='constant'))
     # softmax层： 损失函数
     n.loss = L.SoftmaxWithLoss(n.ip2, n.label)
 
@@ -74,6 +76,7 @@ def write_solver(solver_proto, train_proto, test_proto):
     solver.test_interval = 500
 
     solver.base_lr = 0.03
+    solver.momentum = 0.9
     solver.weight_decay = 5e-4
     solver.lr_policy = 'inv'
     solver.gamma = 1e-4
